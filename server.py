@@ -31,6 +31,7 @@ def quit():
     wind.destroy()
 
 def check():
+    global finish
     global turn
     turn +=1
         
@@ -69,10 +70,8 @@ def check():
         finish = True
         win(b3)
 
-    if (turn == 9):
-        turn = 0
-        if (finish is False):
-            tie()
+    if ( b1!=" " and b2!=" " and b3!=" " and b4!=" " and b5!=" " and b6!=" " and b7!=" " and b8!=" " and b9!=" " and finish==False):
+        tie()
         
 def clicked1():
     global player
@@ -187,8 +186,6 @@ lblTitle.grid(row=0, column=0)
 mainFrame = Frame(wind, bg='grey', bd=10, width=500, height=200) 
 mainFrame.grid(row=1, column=0)
 
-# lb1 = Label(wind, text='player1: O', font=('Helvetica','15'))
-# lb1.grid(row=0, column=0)    
 
 button_list = list()
 
