@@ -4,17 +4,16 @@ from socket import *
 from threading import Thread
 
 player = 0 #which player
-turn = 1 #check turn (game finished or not)
+turn = 0 #check turn (game finished or not)
 finish = False
 
-def win(player, finish):
-    if (finish):
-        messagebox.showinfo(title = "Congratulation",message = 'winner is ' + player )
-    else:
-        messagebox.showinfo(title = "Game Over",message = 'Try again')
+def win(player):
+    messagebox.showinfo(title = "Congratulation",message = 'winner is ' + player )
+
+def tie():
+    messagebox.showinfo(title = "Game Over",message = 'Try again')
 
 def resetGame():
-    button_list.clear()
     bt1["text"]=" "
     bt2["text"]=" "
     bt3["text"]=" "
@@ -45,28 +44,34 @@ def check():
     
     if (b1==b2 and b2==b3 and b1 =='O') or (b1==b2 and b2==b3 and b1 =='X'):
         finish = True
-        win(b1, finish)
+        win(b1)
     if (b4==b5 and b5==b6 and b4 =='O') or (b4==b5 and b5==b6 and b4 =='X'):
         finish = True
-        win(b4, finish)
+        win(b4)
     if (b7==b8 and b8==b9 and b7 =='O') or (b7==b8 and b8==b9 and b7 =='X'):
         finish = True
-        win(b7, finish)
+        win(b7)
     if (b1==b4 and b4==b7 and b1 =='O') or (b1==b4 and b4==b7 and b1 =='X'):
         finish = True
-        win(b1, finish)
+        win(b1)
     if (b2==b5 and b5==b8 and b2 =='O') or (b2==b5 and b5==b8 and b2 =='X'):
         finish = True
-        win(b2, finish)
+        win(b2)
     if (b3==b6 and b6==b9 and b3 =='O') or (b3==b6 and b6==b9 and b3 =='X'):
         finish = True
-        win(b3, finish)
+        win(b3)
     if (b1==b5 and b5==b9 and b1 =='O') or (b1==b5 and b5==b9 and b1 =='X'):
         finish = True
-        win(b1, finish)
+        win(b1)
     if (b3==b5 and b5==b7 and b3 =='O') or (b3==b5 and b5==b7 and b3 =='X'):
         finish = True
-        win(b3, finish)
+        win(b3)
+
+    if (turn == 9):
+        turn = 0
+        tie()
+        # if (finish is False):
+        #     tie()
         
 def clicked1():
     global player
@@ -169,6 +174,7 @@ wind = Tk()
 
 wind.title('Client: Tic Tac Toe')
 wind.geometry('280x440')
+wind.resizable(width=False, height=False)
 wind.configure(background = 'white')
 
 tops = Frame(wind, bg ='black', pady=2, width=500, height=200)
@@ -185,31 +191,31 @@ mainFrame.grid(row=1, column=0)
 
 button_list = list()
 
-bt1=Button(mainFrame, text=" ",bg="white",fg="black",width = 3, height = 1,font=('Helvetica','15'),command = clicked1)
+bt1=Button(mainFrame, text=" ",bg="white",fg="black",width = 5, height = 2,font=('Helvetica','15'),command = clicked1)
 bt1.grid(row = 0, column=1)
 
-bt2=Button(mainFrame, text=" ",bg="white",fg="black",width = 3, height = 1,font=('Helvetica','15'),command = clicked2)
+bt2=Button(mainFrame, text=" ",bg="white",fg="black",width = 5, height = 2,font=('Helvetica','15'),command = clicked2)
 bt2.grid(row = 0, column=2)
 
-bt3=Button(mainFrame, text=" ",bg="white",fg="black",width = 3, height = 1,font=('Helvetica','15'),command = clicked3)
+bt3=Button(mainFrame, text=" ",bg="white",fg="black",width = 5, height = 2,font=('Helvetica','15'),command = clicked3)
 bt3.grid(row = 0, column=3)
 
-bt4=Button(mainFrame, text=" ",bg="white",fg="black",width = 3, height = 1,font=('Helvetica','15'),command = clicked4)
+bt4=Button(mainFrame, text=" ",bg="white",fg="black",width = 5, height = 2,font=('Helvetica','15'),command = clicked4)
 bt4.grid(row = 1, column=1)
 
-bt5=Button(mainFrame, text=" ",bg="white",fg="black",width = 3, height = 1,font=('Helvetica','15'),command = clicked5)
+bt5=Button(mainFrame, text=" ",bg="white",fg="black",width = 5, height = 2,font=('Helvetica','15'),command = clicked5)
 bt5.grid(row = 1, column=2)
 
-bt6=Button(mainFrame, text=" ",bg="white",fg="black",width = 3, height = 1,font=('Helvetica','15'),command = clicked6)
+bt6=Button(mainFrame, text=" ",bg="white",fg="black",width = 5, height = 2,font=('Helvetica','15'),command = clicked6)
 bt6.grid(row = 1, column=3)
 
-bt7=Button(mainFrame, text=" ",bg="white",fg="black",width = 3, height = 1,font=('Helvetica','15'),command = clicked7)
+bt7=Button(mainFrame, text=" ",bg="white",fg="black",width = 5, height = 2,font=('Helvetica','15'),command = clicked7)
 bt7.grid(row = 2, column=1)
 
-bt8=Button(mainFrame, text=" ",bg="white",fg="black",width = 3, height = 1,font=('Helvetica','15'),command = clicked8)
+bt8=Button(mainFrame, text=" ",bg="white",fg="black",width = 5, height = 2,font=('Helvetica','15'),command = clicked8)
 bt8.grid(row = 2, column=2)
 
-bt9=Button(mainFrame, text=" ",bg="white",fg="black",width = 3, height = 1,font=('Helvetica','15'),command = clicked9)
+bt9=Button(mainFrame, text=" ",bg="white",fg="black",width = 5, height = 2,font=('Helvetica','15'),command = clicked9)
 bt9.grid(row = 2, column=3)
 
 button_list.append(bt1)
