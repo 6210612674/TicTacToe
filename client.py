@@ -4,16 +4,25 @@ from socket import *
 from threading import Thread
 
 player = 0  # which player
-turn = 0  # check turn (game finished or not)
 finish = False
 
 
 def win(player):
-    messagebox.showinfo(title="Congratulation", message='winner is ' + player)
+    messagebox.showinfo(title="Client: Congratulation", message='winner is ' + player)
+    turn(player)
 
 
 def tie():
-    messagebox.showinfo(title="Game Over", message='Try again')
+    messagebox.showinfo(title="Client: Game Over", message='Try again')
+
+
+def turn(player):
+    if (player == "O"):
+        messagebox.showinfo(title = "Client: Turn",message = 'Player O turn')
+        resetGame()
+    else:
+        messagebox.showinfo(title = "Client: Turn",message = 'Player X turn')
+        resetGame()
 
 
 def resetGame():
@@ -35,8 +44,6 @@ def quit():
 
 def check():
     global finish
-    global turn
-    turn += 1
 
     b1 = bt1['text']
     b2 = bt2['text']
@@ -177,6 +184,7 @@ def handle_play(n):
     global player
     n = n-1
     button_list[n]["text"] = "O"
+    check()
     player = 1
 
 
