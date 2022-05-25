@@ -8,7 +8,10 @@ finish = False
 
 
 def win(player):
-    messagebox.showinfo(title="Client: Congratulation", message='winner is ' + player)
+    if player=='X':
+        messagebox.showinfo(title="Client: Congratulation", message='winner is ' + player)
+    else:
+        messagebox.showinfo(title="Client: Nice Try!", message='winner is ' + player)
     turn(player)
 
 
@@ -26,6 +29,8 @@ def turn(player):
 
 
 def resetGame():
+    global finish
+    finish=False
     bt1["text"] = " "
     bt2["text"] = " "
     bt3["text"] = " "

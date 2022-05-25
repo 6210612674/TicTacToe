@@ -7,7 +7,10 @@ player = 1
 finish = False
 
 def win(player):
-    messagebox.showinfo(title = "Server: Congratulation",message = 'winner is ' + player )
+    if player=='O':
+        messagebox.showinfo(title="Client: Congratulation", message='winner is ' + player)
+    else:
+        messagebox.showinfo(title="Client: Nice Try!", message='winner is ' + player)
     turn(player)
 
 def tie():
@@ -22,6 +25,8 @@ def turn(player):
         resetGame()
 
 def resetGame():
+    global finish
+    finish=False
     bt1["text"]=" "
     bt2["text"]=" "
     bt3["text"]=" "
